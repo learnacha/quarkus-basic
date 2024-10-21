@@ -64,3 +64,36 @@ If you want to learn more about building native executables, please consult <htt
 Easily start your RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+
+
+Notes
+
+https://github.com/agoncal/agoncal-course-quarkus-starting
+
+Set Graal VM Home
+
+export GRAALVM_HOME=/Users/srihariacha/.sdkman/candidates/java/17.0.9-graalce
+export PATH=/Users/srihariacha/.sdkman/candidates/java/17.0.9-graalce/:$PATH
+
+
+
+
+mvn io.quarkus.platform:quarkus-maven-plugin:create \
+    -DprojectGroupId=org.sri.quarkus.starting \
+    -DprojectArtifactId=rest-book \
+    -DclassName="org.sri.quarkus.starting.BookResource" \
+    -Dpath="/api/books" \
+    -Dextensions='resteasy-jsonb'
+
+cd getting-started
+
+
+
+mvn quarkus:add-extension -Dextensions='container-image-docker'
+
+mvn package -Dquarkus.container-image.build=true -Dquarkus.package.type=fast-jar -Dquarkus.container-image.tag=jvm
+
+docker run -i --rm -p 8080:8080 srihariacha/rest-book:jvm
+
+
+mvn package -Dquarkus.container-image.build=true -Dquarkus.package.type=native quarkus.native.container-build=true -Dquarkus.container-image.tag=native
