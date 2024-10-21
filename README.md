@@ -72,8 +72,8 @@ https://github.com/agoncal/agoncal-course-quarkus-starting
 
 Set Graal VM Home
 
-export GRAALVM_HOME=/Users/srihariacha/.sdkman/candidates/java/17.0.9-graalce
-export PATH=/Users/srihariacha/.sdkman/candidates/java/17.0.9-graalce/:$PATH
+export GRAALVM_HOME=/Users/usrname/.sdkman/candidates/java/17.0.9-graalce
+export PATH=/Users/usrname/.sdkman/candidates/java/17.0.9-graalce/:$PATH
 
 
 
@@ -93,7 +93,7 @@ mvn quarkus:add-extension -Dextensions='container-image-docker'
 
 mvn package -Dquarkus.container-image.build=true -Dquarkus.package.type=fast-jar -Dquarkus.container-image.tag=jvm
 
-docker run -i --rm -p 8080:8080 srihariacha/rest-book:jvm
+docker run -i --rm -p 8080:8080 usrname/rest-book:jvm
 
 
 mvn package -Dquarkus.container-image.build=true -Dquarkus.package.type=native quarkus.native.container-build=true -Dquarkus.container-image.tag=native
